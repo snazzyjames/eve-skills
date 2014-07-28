@@ -15,8 +15,7 @@ exports = module.exports = function(req, res) {
 
         var onSuccess = function() {
         //Render log in
-            req.flash('success', 'Hello!');
-            return next();
+            res.redirect('home');
         }
 
         var onFail = function() {

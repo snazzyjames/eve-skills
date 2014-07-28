@@ -40,6 +40,10 @@ exports = module.exports = function(app) {
 
 	//Session
     app.all('/signin', routes.views.session.signin);
+
+    // User
+    app.all('/home*', middleware.requireUser);
+    app.all('/home', routes.views.home);
 	
 	
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
