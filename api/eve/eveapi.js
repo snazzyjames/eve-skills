@@ -1,5 +1,5 @@
 var sax = require('sax'),
-    Client = require('.client');
+    Client = require('./client');
 
 var eveapi = new Client();
 

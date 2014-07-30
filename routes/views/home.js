@@ -1,4 +1,5 @@
-var keystone = require('keystone');
+var keystone = require('keystone'),
+    eveapi = require('../../api/eve/eveapi');
 
 exports = module.exports = function(req, res) {
 
@@ -8,6 +9,21 @@ exports = module.exports = function(req, res) {
     // locals.section is used to set the currently selected
     // item in the header navigation.
     locals.section = 'home';
+
+    eveapi.setCache(new eveapi.cache.FileCache());
+
+    //TODO: Pull user id and vcode for setting params, see how user and account information can persist.
+    eveapi.setParams({
+        keyID: '',
+        vCode: ''
+    });
+
+    eveapi.fetch('account:Characters', function(err,result){
+        if(err) throw err;
+
+        console.log(result);
+    });
+
 
     // Render the view
     view.render('home');
