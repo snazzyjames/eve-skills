@@ -10,12 +10,14 @@ exports = module.exports = function(req, res) {
     // item in the header navigation.
     locals.section = 'home';
 
+    var user = req.user;
+
     eveapi.setCache(new eveapi.cache.FileCache());
 
     //TODO: Pull user id and vcode for setting params, see how user and account information can persist.
     eveapi.setParams({
-        keyID: '',
-        vCode: ''
+        keyID: user.keyId,
+        vCode: user.vCode
     });
 
     eveapi.fetch('account:Characters', function(err,result){
